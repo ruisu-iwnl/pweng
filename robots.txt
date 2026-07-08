@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pweng.wiseeducation2023.workers.dev/sitemap.xml
