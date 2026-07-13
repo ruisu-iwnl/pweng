@@ -48,7 +48,8 @@ async function handleLevelTestSubmit(request) {
 
   let res = await fetch(TARGET_URL, { method: 'POST', body, redirect: 'manual', headers });
   let location = res.headers.get('location') || '';
-  const debug = { attempt1: { status: res.status, location } };
+  let bodyText = await res.clone().text();
+  const debug = { attempt1: { status: res.status, location, bodyText: bodyText.slice(0, 800) } };
 
   // pweng.net does a one-time cookie-verification redirect (?ckattempt=1) on a
   // fresh session; capture the cookie it just issued and retry once with it attached.
@@ -64,7 +65,8 @@ async function handleLevelTestSubmit(request) {
     });
 
     location = res.headers.get('location') || '';
-    debug.attempt2 = { status: res.status, location };
+    bodyText = await res.clone().text();
+    debug.attempt2 = { status: res.status, location, bodyText: bodyText.slice(0, 800) };
   }
 
   const success = location.includes('finish');
