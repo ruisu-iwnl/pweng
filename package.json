@@ -1,7 +1,0 @@
-{
-  "name": "pweng-landing",
-  "private": true,
-  "dependencies": {
-    "iconv-lite": "^0.6.3"
-  }
-}

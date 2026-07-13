@@ -75,39 +75,5 @@ function submitApply(){
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail('올바른 이메일 주소를 입력해주세요.');
   if(!document.getElementById('agreePrivacy').checked) return fail('개인정보 수집·이용 동의(필수)에 체크해주세요.');
 
-  var lessonGubun = sel.type === '화상영어' ? 'S' : 'M';
-  var submitBtn = document.querySelector('.submit-btn');
-  if (submitBtn) submitBtn.disabled = true;
-
-  var data = {
-    hopedate: sel.dateValue,
-    hopetime: sel.timeValue,
-    lesson_gubun: lessonGubun,
-    name: name,
-    mobile: phone,
-    email: email,
-    skype: zoom,
-    agreement_2: document.getElementById('agreeMkt').checked ? 'Y' : 'N'
-  };
-
-  fetch('/api/level-test-submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  }).then(function(res){ return res.json(); }).then(function(result){
-    if (submitBtn) submitBtn.disabled = false;
-
-    if (!result.success) {
-      return fail('신청 처리 중 문제가 발생했습니다. 다시 시도해주시거나 전화로 문의해주세요: 1688-8672');
-    }
-
-    document.getElementById('applyForm').style.display='none';
-    var done=document.getElementById('applyDone');
-    document.getElementById('doneInfo').innerHTML='<b>'+name+'</b>님 &nbsp;·&nbsp; '+sel.date+' '+sel.time+' &nbsp;·&nbsp; '+sel.type;
-    done.style.display='block';
-    done.scrollIntoView({behavior:'smooth',block:'center'});
-  }).catch(function(){
-    if (submitBtn) submitBtn.disabled = false;
-    fail('신청 처리 중 문제가 발생했습니다. 다시 시도해주시거나 전화로 문의해주세요: 1688-8672');
-  });
+  window.location.href = 'https://www.pweng.net/level-test.php';
 }
