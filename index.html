@@ -1117,89 +1117,31 @@ footer .info{font-size:12.5px;color:rgba(255,255,255,.45);font-style:normal}
       <p class="lv">lv1~6 Beginner · lv7~12 Intermediate · lv13~18 Advanced<br>나의 레벨을 전문 강사가 직접 1:1로 진단해드립니다.</p>
     </div>
 
-    <div id="applyForm">
-
-      <!-- STEP 1 -->
-      <div class="fstep">
-        <div class="fstep-head"><span class="fstep-num">1</span>희망 날짜 &amp; 시간 선택</div>
-        <div class="fstep-body">
-          <div class="f-label">희망 날짜</div>
-          <div class="pill-grid" id="dateGrid"></div>
-          <div class="f-label">희망 시간대</div>
-          <div class="pill-grid" id="timeGrid"></div>
-        </div>
+    <div class="type-grid">
+      <div class="type-card">
+        <div class="ico" aria-hidden="true">📞</div>
+        <h3>전화영어</h3>
+        <div class="desc">전화로 진행하는 1:1<br>레벨테스트</div>
+        <ul>
+          <li>일반전화 or 휴대전화로 진행</li>
+          <li>2명의 강사님과 연이어 10분씩 2회 진행</li>
+          <li>1ST : 자유주제의 프리토킹 형식</li>
+          <li>2ND : 어휘, 문장형성, 문법, 듣기 영역</li>
+        </ul>
       </div>
-
-      <!-- STEP 2 -->
-      <div class="fstep">
-        <div class="fstep-head"><span class="fstep-num">2</span>수업 타입 선택</div>
-        <div class="fstep-body">
-          <div class="sel-bar" id="selBar1">선택됨: <b>날짜와 시간을 먼저 선택해주세요</b></div>
-          <div class="type-grid">
-            <button type="button" class="type-card" data-type="전화영어" onclick="pickType(this)">
-              <div class="ico" aria-hidden="true">📞</div>
-              <h3>전화영어</h3>
-              <div class="desc">전화로 진행하는 1:1<br>레벨테스트</div>
-              <ul>
-                <li>일반전화 or 휴대전화로 진행</li>
-                <li>2명의 강사님과 연이어 10분씩 2회 진행</li>
-                <li>1ST : 자유주제의 프리토킹 형식</li>
-                <li>2ND : 어휘, 문장형성, 문법, 듣기 영역</li>
-              </ul>
-            </button>
-            <button type="button" class="type-card" data-type="화상영어" onclick="pickType(this)">
-              <div class="ico" aria-hidden="true">💻</div>
-              <h3>화상영어</h3>
-              <div class="desc">ZOOM으로 진행하는 1:1<br>레벨테스트</div>
-              <ul>
-                <li>1명의 강사님과 15분 1회 진행</li>
-                <li>줌(ZOOM) 프로그램: 줌 아이디 기재 후 powerenglish로 시작되는 강사님 ID 친구 추가</li>
-                <li>화상 영어 테스트의 경우, 마이크 기능이 있는 헤드셋(이어폰)이 반드시 필요 (웹캠 선택 사항)</li>
-              </ul>
-            </button>
-          </div>
-          <div class="f-field" id="zoomField" style="display:none">
-            <div class="f-label">ZOOM ID <span class="req">*</span></div>
-            <input class="f-input" type="text" id="zoomId" placeholder="ZOOM ID를 입력해주세요" autocomplete="off">
-          </div>
-        </div>
+      <div class="type-card">
+        <div class="ico" aria-hidden="true">💻</div>
+        <h3>화상영어</h3>
+        <div class="desc">ZOOM으로 진행하는 1:1<br>레벨테스트</div>
+        <ul>
+          <li>1명의 강사님과 15분 1회 진행</li>
+          <li>줌(ZOOM) 프로그램: 줌 아이디 기재 후 powerenglish로 시작되는 강사님 ID 친구 추가</li>
+          <li>화상 영어 테스트의 경우, 마이크 기능이 있는 헤드셋(이어폰)이 반드시 필요 (웹캠 선택 사항)</li>
+        </ul>
       </div>
-
-      <!-- STEP 3 -->
-      <div class="fstep dark-step">
-        <div class="fstep-head"><span class="fstep-num">3</span>개인 정보 입력</div>
-        <div class="fstep-body">
-          <div class="sel-bar" id="selBar2">선택됨: <b>날짜 / 시간 / 수업 타입을 먼저 선택해주세요</b></div>
-          <div class="f-row">
-            <div class="f-field">
-              <div class="f-label">이름 <span class="req">*</span></div>
-              <input class="f-input" type="text" id="uName" placeholder="이름을 입력해주세요" autocomplete="name">
-            </div>
-            <div class="f-field">
-              <div class="f-label">휴대폰 <span class="req">*</span></div>
-              <input class="f-input" type="tel" id="uPhone" placeholder="010-0000-0000" autocomplete="tel" inputmode="numeric">
-            </div>
-          </div>
-          <div class="f-field">
-            <div class="f-label">이메일 <span class="req">*</span></div>
-            <input class="f-input" type="email" id="uEmail" placeholder="example@email.com" autocomplete="email">
-          </div>
-          <label class="chk"><input type="checkbox" id="agreePrivacy"> [필수] 개인정보 수집·이용에 동의합니다</label>
-          <label class="chk"><input type="checkbox" id="agreeMkt"> [선택] 마케팅 정보 수신에 동의합니다</label>
-          <button type="button" class="submit-btn" onclick="submitApply()">레벨테스트 신청 완료</button>
-          <p class="form-msg" id="formMsg"></p>
-        </div>
-      </div>
-
     </div>
 
-    <div class="apply-done" id="applyDone">
-      <div class="big" aria-hidden="true">🎉</div>
-      <h3>신청이 완료되었습니다!</h3>
-      <p id="doneInfo"></p>
-      <p style="margin-top:12px">담당자가 확인 후 카카오톡 또는 문자로<br>레벨테스트 일정을 확정해 안내드립니다.</p>
-    </div>
-
+    <button type="button" class="submit-btn" onclick="location.href='https://www.pweng.net/level-test.php'">레벨테스트 신청하러 가기</button>
   </div>
 </section>
 
@@ -1312,7 +1254,5 @@ function playHeroVideo(el){
 })();
 
 </script>
-<script src="/js/level-test-apply.js"></script>
-
 </body>
 </html>
