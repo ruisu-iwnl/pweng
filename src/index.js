@@ -48,11 +48,13 @@ async function handleLevelTestSubmit(request) {
 
   let res = await fetch(TARGET_URL, { method: 'POST', body, redirect: 'manual', headers });
   let location = res.headers.get('location') || '';
+  const debug = { attempt1: { status: res.status, location } };
 
   // pweng.net does a one-time cookie-verification redirect (?ckattempt=1) on a
   // fresh session; capture the cookie it just issued and retry once with it attached.
   if (res.status >= 300 && res.status < 400 && location.includes('ckattempt')) {
     const cookie = collectCookieHeader(res);
+    debug.cookie = cookie;
 
     res = await fetch(TARGET_URL, {
       method: 'POST',
@@ -62,11 +64,13 @@ async function handleLevelTestSubmit(request) {
     });
 
     location = res.headers.get('location') || '';
+    debug.attempt2 = { status: res.status, location };
   }
 
   const success = location.includes('finish');
 
-  return jsonResponse({ success });
+  // TEMPORARY: debug field to diagnose why success is false; remove once fixed.
+  return jsonResponse({ success, debug });
 }
 
 function collectCookieHeader(res) {
