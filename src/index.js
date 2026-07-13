@@ -3,7 +3,19 @@ import iconv from 'iconv-lite';
 const TARGET_URL = 'https://www.pweng.net/level-test.save.php';
 const REQUIRED_FIELDS = ['hopedate', 'hopetime', 'lesson_gubun', 'name', 'mobile', 'email'];
 
-export async function onRequestPost({ request }) {
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+
+    if (request.method === 'POST' && url.pathname === '/api/level-test-submit') {
+      return handleLevelTestSubmit(request);
+    }
+
+    return env.ASSETS.fetch(request);
+  },
+};
+
+async function handleLevelTestSubmit(request) {
   let data;
 
   try {
